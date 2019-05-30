@@ -1,0 +1,16 @@
+#index {
+  .example-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 1rem;
+
+    .example {
+      background-color: #ff00ff;
+      padding: .5rem;
+
+      .content {
+        text-align: center;
+      }
+    }
+  }
+}

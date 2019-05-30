@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section" id="index">
+    <div class="container">
+        <div class="example-container">
+            {% for example in examples %}
+                <article class="example">
+                    <header class="title">{{ example.title }}</header>
+                    <div class="content">
+                        <a href="{{ url_for('detail', id_=example.id) }}"><img src="{{ example.image }}" /></a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
