@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<style type="text/css">
+    {{ style }}
+</style>
+{% endblock %}
+
 {% block content %}
     <section class="section" id="index">
         <div class="container">
             <h2 class="title">{{ example.title }}</h2>
+            <div class="columns">
+                <div class="column">
             <img src="{{ example.image }}" />
+                    </div>
+                <div class="column">
+                    <pre>
+                        {{ example.code | safe }}
+                    </pre>
+                </div>
+                </div>
         </div>
     </section>
 {% endblock %}
