@@ -5,8 +5,10 @@
     grid-gap: 1rem;
 
     .example {
-      background-color: #ff00ff;
       padding: .5rem;
+      background: #f2f2f2;
+      border: 1px solid #2a2a2a;
+      border-radius: .3rem;
 
       .content {
         text-align: center;
