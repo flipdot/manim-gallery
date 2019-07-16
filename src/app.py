@@ -76,7 +76,7 @@ def render_scene(module):
                                      'input_file_path': 'src/examples/hello_world.py',
                                      'movie_file_extension': '.mp4',
                                      'png_mode': 'RGB',
-                                     'save_as_gif': False,
+                                     'save_as_gif': True,
                                      'save_last_frame': False,
                                      'save_pngs': False,
                                      'write_to_movie': True},
@@ -87,6 +87,8 @@ def render_scene(module):
               'video_dir': 'video_output',
               'tex_dir': 'video_tex',
               'media_dir': 'video_media',
+              'module': None,
+              
               }
     manimlib.constants.initialize_directories(config)
     for SceneClass in scene_classes:
