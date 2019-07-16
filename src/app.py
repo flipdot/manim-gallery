@@ -82,7 +82,13 @@ def render_scene(module):
                                      'write_to_movie': True},
               'leave_progress_bars': False,
               'skip_animations': False,
-              'start_at_animation_number': None}
+              'start_at_animation_number': None,
+              'video_output_dir': None,
+              'video_dir': 'video_output',
+              'tex_dir': 'video_tex',
+              'media_dir': 'video_media',
+              }
+    manimlib.constants.initialize_directories(config)
     for SceneClass in scene_classes:
         scene = SceneClass(**config)
     manimlib.extract_scene.main(config)
