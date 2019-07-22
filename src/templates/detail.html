@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<style type="text/css">
-    {{ style }}
-</style>
+    <style type="text/css">
+        {{ style }}
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -12,14 +12,16 @@
             <h2 class="title">{{ example.title }}</h2>
             <div class="columns">
                 <div class="column">
-            <img src="{{ example.image }}" />
-                    </div>
+                    {% for image in example.images %}
+                        <img src="{{ image }}"/>
+                    {% endfor %}
+                </div>
                 <div class="column">
                     <pre>
                         {{ example.code | safe }}
                     </pre>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
 {% endblock %}
