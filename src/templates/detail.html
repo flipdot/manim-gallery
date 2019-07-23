@@ -11,7 +11,7 @@
         <div class="container">
             <h2 class="title">{{ example.title }}</h2>
             <div class="columns">
-                <div class="column">
+                <div class="column is-half">
                     {% for scene in example.scenes %}
                         <code>class {{ scene.name }}(Scene):</code>
                         <a href="{{ scene.image_url.xl }}"><img src="{{ scene.image_url.m }}"/></a>
@@ -20,7 +20,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="column">
+                <div class="column is-half">
                     <h3 class="title">File <code>{{ example.filename }}</code></h3>
                     <pre>{{ example.code | safe }}</pre>
                     <hr>
