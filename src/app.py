@@ -36,7 +36,7 @@ def index():
     category_names = [x.name for x in pkgutil.iter_modules([path]) if x.ispkg]
 
     def get_examples(category):
-        return [x for x in examples.__all__ if x.startswith(category)]
+        return [x.split('.')[-1] for x in examples.__all__ if x.startswith(category)]
 
     categories = [
         {
@@ -44,8 +44,8 @@ def index():
             'examples': [
                 {
                     'title': module_name,
-                    'image': get_scene_details(category, importlib.import_module(f'examples.{module_name}'))[0],
-                    'module_name': module_name.split('.')[-1],
+                    'image': get_scene_details(category, importlib.import_module(f'examples.{category}.{module_name}'))[0],
+                    'module_name': module_name,
                 } for module_name in get_examples(category)
             ]
         } for category in category_names
