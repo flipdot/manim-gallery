@@ -25,7 +25,7 @@ def index():
     example_list = [
         {
             'title': module,
-            'image': 'http://placekitten.com/150/150',
+            'image': get_rendering_urls(importlib.import_module(f'examples.{module}'), size='xs')[0],
             'id': module
         } for module in examples.__all__ if not module.startswith('_')
     ]
@@ -46,12 +46,26 @@ def detail(id_):
     return render_template('detail.html', example=example, style=HtmlFormatter().get_style_defs('.highlight'))
 
 
-@app.route('/renderings/<module_id>/<scene_name>')
-def renderings(module_id, scene_name):
-    module = importlib.import_module(f'examples.{module_id}')
-    SceneClass = [x for x in get_scene_classes(module) if x.__name__ == scene_name][0]
+@app.route('/renderings/<size>/<module_id>/<scene_name>.gif')
+def renderings(size, module_id, scene_name):
+    try:
+        module = importlib.import_module(f'examples.{module_id}')
+    except ModuleNotFoundError:
+        return abort(404)
+    scene_classes = [x for x in get_scene_classes(module) if x.__name__ == scene_name]
+    if len(scene_classes) != 1:
+        return abort(404)
+    SceneClass = scene_classes[0]
 
-    config = {'camera_config': {'frame_rate': 24, 'pixel_height': 480, 'pixel_width': 640},
+    camera_config = {
+        'xs': {'frame_rate': 12, 'pixel_height': 240, 'pixel_width': 320},
+        'm': {'frame_rate': 24, 'pixel_height': 480, 'pixel_width': 640},
+    }
+
+    if size not in camera_config:
+        return abort(404)
+
+    config = {'camera_config': camera_config[size],
               'end_at_animation_number': None,
               'file_writer_config': {'file_name': None,
                                      'input_file_path': module.__file__,
@@ -81,9 +95,13 @@ def renderings(module_id, scene_name):
     return send_from_directory(directory, filename)
 
 
-def get_rendering_urls(module):
+def get_rendering_urls(module, size='m'):
     scene_classes = get_scene_classes(module)
-    return [url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=x.__name__) for x in scene_classes]
+    return [
+        {
+            'url': url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=x.__name__, size=size),
+            'scene_name': x.__name__,
+        } for x in scene_classes]
 
 
 def get_scene_classes(module):
