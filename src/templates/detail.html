@@ -12,19 +12,50 @@
             <h2 class="title">{{ example.title }}</h2>
             <div class="columns">
                 <div class="column">
-                    {% for image in example.images %}
-                        <code>class {{ image.scene_name }}(Scene):</code>
-                        <img src="{{ image.url }}"/>
+                    {% for scene in example.scenes %}
+                        <code>class {{ scene.name }}(Scene):</code>
+                        <img src="{{ scene.image_url }}"/>
                         {% if not loop.last %}
                             <hr>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="column">
-                    <h3>File <code>{{ example.filename }}</code></h3>
-                    <pre>
-                        {{ example.code | safe }}
-                    </pre>
+                    <h3 class="title">File <code>{{ example.filename }}</code></h3>
+                    <pre>{{ example.code | safe }}</pre>
+                    <hr>
+                    <h3 class="title">Render this example</h3>
+                    <label class="label">
+                        Install manim
+                        <input class="input" type="text" value="pip install manim" readonly>
+                    </label>
+                    <div class="field">
+                        <div class="control">
+                            <a class="button is-primary">
+                                <span class="icon"><i class="fas fa-download"></i></span>
+                                <span>Download Code</span>
+                            </a>
+                        </div>
+                    </div>
+                    {% for scene in example.scenes %}
+                        <div class="field">
+                            <label class="label">
+                                HD render {{ scene.name }}
+                                <input class="input" type="text" value="manim {{ example.filename }} {{ scene.name }}"
+                                       readonly>
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                    {% for scene in example.scenes %}
+                        <div class="field">
+                            <label class="label">
+                                Full HD render {{ scene.name }}
+                                <input class="input" type="text"
+                                       value="manim -r 1080,1920 {{ example.filename }} {{ scene.name }}" readonly>
+                            </label>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

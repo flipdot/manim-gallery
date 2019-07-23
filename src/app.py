@@ -26,7 +26,7 @@ def index():
     example_list = [
         {
             'title': module,
-            'image': get_rendering_urls(importlib.import_module(f'examples.{module}'), size='xs')[0],
+            'image': get_scene_details(importlib.import_module(f'examples.{module}'), size='xs')[0],
             'id': module
         } for module in examples.__all__ if not module.startswith('_')
     ]
@@ -41,7 +41,7 @@ def detail(id_):
     code = inspect.getsource(module)
     example = {
         'title': id_,
-        'images': get_rendering_urls(module),
+        'scenes': get_scene_details(module),
         'code': highlight(code, Python3Lexer(), HtmlFormatter()),
         'filename': f'{id_}.py',
     }
@@ -97,12 +97,12 @@ def renderings(size, module_id, scene_name):
     return send_from_directory(directory, filename)
 
 
-def get_rendering_urls(module, size='m'):
+def get_scene_details(module, size='m'):
     scene_classes = get_scene_classes(module)
     return [
         {
-            'url': url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=x.__name__, size=size),
-            'scene_name': x.__name__,
+            'image_url': url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=x.__name__, size=size),
+            'name': x.__name__,
         } for x in scene_classes]
 
 
