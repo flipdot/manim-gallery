@@ -8,6 +8,7 @@ from flask_assets import Environment, Bundle
 from pygments import highlight
 from pygments.lexers.python import Python3Lexer
 from pygments.formatters.html import HtmlFormatter
+from flask_frozen import Freezer
 
 import examples
 
@@ -32,7 +33,7 @@ def index():
     return render_template('index.html', examples=example_list)
 
 
-@app.route('/detail/<id_>')
+@app.route('/detail/<id_>/')
 def detail(id_):
     if id_ not in examples.__all__ or id_.startswith('_'):
         abort(404)
@@ -41,7 +42,8 @@ def detail(id_):
     example = {
         'title': id_,
         'images': get_rendering_urls(module),
-        'code': highlight(code, Python3Lexer(), HtmlFormatter())
+        'code': highlight(code, Python3Lexer(), HtmlFormatter()),
+        'filename': f'{id_}.py',
     }
     return render_template('detail.html', example=example, style=HtmlFormatter().get_style_defs('.highlight'))
 
@@ -109,3 +111,10 @@ def get_scene_classes(module):
     # This is here because it was removed inside of manim:
     # https://github.com/3b1b/manim/commit/4fa782b8b5f16378a8352315b7975581b9fd87fe#r33417433
     return [x for x in scene_classes if x.__module__.startswith(module.__name__)]
+
+
+if __name__ == '__main__':
+    freezer = Freezer(app)
+
+    if __name__ == '__main__':
+        freezer.freeze()
