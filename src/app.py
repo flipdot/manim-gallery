@@ -14,6 +14,7 @@ import examples
 
 app = Flask(__name__)
 app.config['RENDERINGS_PATH'] = Path('media/renderings')
+app.config['EXAMPLES_PATH'] = Path('examples/')
 
 assets = Environment(app)
 assets.url = app.static_url_path
@@ -95,6 +96,11 @@ def renderings(size, module_id, scene_name):
     directory = path.parent
     filename = path.name
     return send_from_directory(directory, filename)
+
+
+@app.route('/example_src/<filename>')
+def example_src(filename):
+    return send_from_directory(app.config['EXAMPLES_PATH'], filename)
 
 
 def get_scene_details(module, size='m'):
