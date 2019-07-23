@@ -12,6 +12,13 @@ from flask_frozen import Freezer
 
 import examples
 
+CAMERA_CONFIG = {
+    'xs': {'frame_rate': 12, 'pixel_height': 240, 'pixel_width': 320},
+    'm': {'frame_rate': 24, 'pixel_height': 480, 'pixel_width': 640},
+    'l': {'frame_rate': 30, 'pixel_height': 720, 'pixel_width': 1280},
+    'xl': {'frame_rate': 30, 'pixel_height': 1080, 'pixel_width': 1920},
+}
+
 app = Flask(__name__)
 app.config['RENDERINGS_PATH'] = Path('media/renderings')
 app.config['EXAMPLES_PATH'] = Path('examples/')
@@ -27,7 +34,7 @@ def index():
     example_list = [
         {
             'title': module,
-            'image': get_scene_details(importlib.import_module(f'examples.{module}'), size='xs')[0],
+            'image': get_scene_details(importlib.import_module(f'examples.{module}'))[0],
             'id': module
         } for module in examples.__all__ if not module.startswith('_')
     ]
@@ -60,15 +67,10 @@ def renderings(size, module_id, scene_name):
         return abort(404)
     SceneClass = scene_classes[0]
 
-    camera_config = {
-        'xs': {'frame_rate': 12, 'pixel_height': 240, 'pixel_width': 320},
-        'm': {'frame_rate': 24, 'pixel_height': 480, 'pixel_width': 640},
-    }
-
-    if size not in camera_config:
+    if size not in CAMERA_CONFIG:
         return abort(404)
 
-    config = {'camera_config': camera_config[size],
+    config = {'camera_config': CAMERA_CONFIG[size],
               'end_at_animation_number': None,
               'file_writer_config': {'file_name': None,
                                      'input_file_path': module.__file__,
@@ -103,13 +105,17 @@ def example_src(filename):
     return send_from_directory(app.config['EXAMPLES_PATH'], filename)
 
 
-def get_scene_details(module, size='m'):
+def get_scene_details(module):
     scene_classes = get_scene_classes(module)
+
+    def get_url(scene, size):
+        return url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=scene.__name__, size=size)
+
     return [
         {
-            'image_url': url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=x.__name__, size=size),
-            'name': x.__name__,
-        } for x in scene_classes]
+            'image_url': {size: get_url(scene, size) for size in CAMERA_CONFIG.keys()},
+            'name': scene.__name__,
+        } for scene in scene_classes]
 
 
 def get_scene_classes(module):

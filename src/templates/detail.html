@@ -14,7 +14,7 @@
                 <div class="column">
                     {% for scene in example.scenes %}
                         <code>class {{ scene.name }}(Scene):</code>
-                        <img src="{{ scene.image_url }}"/>
+                        <a href="{{ scene.image_url.xl }}"><img src="{{ scene.image_url.m }}"/></a>
                         {% if not loop.last %}
                             <hr>
                         {% endif %}
