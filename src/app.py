@@ -1,5 +1,6 @@
 import importlib
 import inspect
+import pkgutil
 from pathlib import Path
 
 import manimlib
@@ -31,35 +32,46 @@ assets.register('scss_all', scss)
 
 @app.route('/')
 def index():
-    example_list = [
+    path = Path(examples.__path__[0])
+    category_names = [x.name for x in pkgutil.iter_modules([path]) if x.ispkg]
+
+    def get_examples(category):
+        return [x for x in examples.__all__ if x.startswith(category)]
+
+    categories = [
         {
-            'title': module,
-            'image': get_scene_details(importlib.import_module(f'examples.{module}'))[0],
-            'id': module
-        } for module in examples.__all__ if not module.startswith('_')
+            'name': category,
+            'examples': [
+                {
+                    'title': module_name,
+                    'image': get_scene_details(category, importlib.import_module(f'examples.{module_name}'))[0],
+                    'module_name': module_name.split('.')[-1],
+                } for module_name in get_examples(category)
+            ]
+        } for category in category_names
     ]
-    return render_template('index.html', examples=example_list)
+    return render_template('index.html', categories=categories)
 
 
-@app.route('/detail/<id_>/')
-def detail(id_):
-    if id_ not in examples.__all__ or id_.startswith('_'):
+@app.route('/detail/<category>/<module_name>/')
+def detail(category, module_name):
+    if f'{category}.{module_name}' not in examples.__all__ or module_name.startswith('_'):
         abort(404)
-    module = importlib.import_module(f'examples.{id_}')
+    module = importlib.import_module(f'examples.{category}.{module_name}')
     code = inspect.getsource(module)
     example = {
-        'title': id_,
-        'scenes': get_scene_details(module),
+        'title': module_name,
+        'scenes': get_scene_details(category, module),
         'code': highlight(code, Python3Lexer(), HtmlFormatter()),
-        'filename': f'{id_}.py',
+        'filename': f'{module_name}.py',
     }
     return render_template('detail.html', example=example, style=HtmlFormatter().get_style_defs('.highlight'))
 
 
-@app.route('/renderings/<size>/<module_id>/<scene_name>.gif')
-def renderings(size, module_id, scene_name):
+@app.route('/renderings/<size>/<category>/<module_name>/<scene_name>.gif')
+def renderings(size, category, module_name, scene_name):
     try:
-        module = importlib.import_module(f'examples.{module_id}')
+        module = importlib.import_module(f'examples.{category}.{module_name}')
     except ModuleNotFoundError:
         return abort(404)
     scene_classes = [x for x in get_scene_classes(module) if x.__name__ == scene_name]
@@ -105,11 +117,11 @@ def example_src(filename):
     return send_from_directory(app.config['EXAMPLES_PATH'], filename)
 
 
-def get_scene_details(module):
+def get_scene_details(category, module):
     scene_classes = get_scene_classes(module)
 
     def get_url(scene, size):
-        return url_for('renderings', module_id=module.__name__.rsplit('.')[-1], scene_name=scene.__name__, size=size)
+        return url_for('renderings', category=category, module_name=module.__name__.rsplit('.')[-1], scene_name=scene.__name__, size=size)
 
     return [
         {

@@ -3,18 +3,21 @@
 {% block content %}
     <section class="section" id="index">
         <div class="container">
-            <div class="example-container">
-                {% for example in examples %}
-                    <a href="{{ url_for('detail', id_=example.id) }}">
-                        <article class="example">
-                            <header class="title">{{ example.title }}</header>
-                            <div class="content">
-                                <img src="{{ example.image.image_url.xs }}"/>
-                            </div>
-                        </article>
-                    </a>
-                {% endfor %}
-            </div>
+            {% for category in categories %}
+                <h2 class="title">{{ category.name }}</h2>
+                <div class="example-container">
+                    {% for example in category.examples %}
+                        <a href="{{ url_for('detail', module_name=example.module_name, category=category.name) }}">
+                            <article class="example">
+                                <header class="title">{{ example.title }}</header>
+                                <div class="content">
+                                    <img src="{{ example.image.image_url.xs }}"/>
+                                </div>
+                            </article>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
