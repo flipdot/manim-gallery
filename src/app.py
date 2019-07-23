@@ -64,6 +64,7 @@ def detail(category, module_name):
         'scenes': get_scene_details(category, module),
         'code': highlight(code, Python3Lexer(), HtmlFormatter()),
         'filename': f'{module_name}.py',
+        'category': category,
     }
     return render_template('detail.html', example=example, style=HtmlFormatter().get_style_defs('.highlight'))
 
@@ -112,9 +113,9 @@ def renderings(size, category, module_name, scene_name):
     return send_from_directory(directory, filename)
 
 
-@app.route('/example_src/<filename>')
-def example_src(filename):
-    return send_from_directory(app.config['EXAMPLES_PATH'], filename)
+@app.route('/example_src/<category>/<filename>')
+def example_src(category, filename):
+    return send_from_directory(app.config['EXAMPLES_PATH'] / category, filename)
 
 
 def get_scene_details(category, module):
