@@ -26,13 +26,17 @@
                     <hr>
                     <h3 class="title">Render this example</h3>
                     <label class="label">
-                        Install ffmpeg and manim
-                        <input class="input" type="text" value="sudo apt-get install -y ffmpeg" readonly>
+                        Install LaTeX and ffmpeg (LaTeX is optional)
+                        <input class="input" type="text" value="sudo apt-get install -y texlive-full ffmpeg" readonly>
+                    </label>
+                    <label class="label">
+                        Install manim
                         <input class="input" type="text" value="pip install manim" readonly>
                     </label>
                     <div class="field">
                         <div class="control">
-                            <a class="button is-primary" href="{{ url_for('example_src', category=example.category, filename=example.filename) }}">
+                            <a class="button is-primary"
+                               href="{{ url_for('example_src', category=example.category, filename=example.filename) }}">
                                 <span class="icon"><i class="fas fa-download"></i></span>
                                 <span>Download Code</span>
                             </a>
