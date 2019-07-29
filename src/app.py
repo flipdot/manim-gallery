@@ -119,6 +119,16 @@ def example_src(category, filename):
     return send_from_directory(app.config['EXAMPLES_PATH'] / category, filename)
 
 
+@app.route('/CNAME')
+def github_cname():
+    """
+    Together with Frozen-Flask, this route will create a CNAME file which is required by GitHub to use a custom
+    domain for gh-pages.
+    :return:
+    """
+    return 'manim.flipdot.org'
+
+
 def get_scene_details(category, module):
     scene_classes = get_scene_classes(module)
 
