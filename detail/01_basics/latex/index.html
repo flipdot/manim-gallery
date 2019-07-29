@@ -90,40 +90,34 @@
 
     <section class="section" id="index">
         <div class="container">
-            <h2 class="title">hello_world</h2>
+            <h2 class="title">latex</h2>
             <div class="columns">
                 <div class="column is-half">
                     
-                        <code>class HelloOtherWorld(Scene):</code>
-                        <a href="/renderings/xl/01_basics/hello_world/HelloOtherWorld.gif"><img src="/renderings/m/01_basics/hello_world/HelloOtherWorld.gif"/></a>
-                        
-                            <hr>
-                        
-                    
-                        <code>class HelloWorld(Scene):</code>
-                        <a href="/renderings/xl/01_basics/hello_world/HelloWorld.gif"><img src="/renderings/m/01_basics/hello_world/HelloWorld.gif"/></a>
+                        <code>class LaTeX(Scene):</code>
+                        <a href="/renderings/xl/01_basics/latex/LaTeX.gif"><img src="/renderings/m/01_basics/latex/LaTeX.gif"/></a>
                         
                     
                 </div>
                 <div class="column is-half">
-                    <h3 class="title">File <code>hello_world.py</code></h3>
+                    <h3 class="title">File <code>latex.py</code></h3>
                     <pre><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">manimlib.imports</span> <span class="k">import</span> <span class="o">*</span>
 
 
-<span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LaTeX</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">hello</span> <span class="o">=</span> <span class="n">TexMobject</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{Hello manim!}&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">hello</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">hello</span><span class="p">))</span>
-
-
-<span class="k">class</span> <span class="nc">HelloOtherWorld</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">hello</span> <span class="o">=</span> <span class="n">TexMobject</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text{Hello manim again!}&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">hello</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">hello</span><span class="p">))</span>
+        <span class="n">hello</span> <span class="o">=</span> <span class="n">TexMobject</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\text{Hello \LaTeX!}&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+        <span class="n">formula</span> <span class="o">=</span> <span class="n">TexMobject</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\int_</span><span class="si">{a}</span><span class="s1">^</span><span class="si">{b}</span><span class="s1"> x^2 dx&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">formula</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span> <span class="o">+</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">Write</span><span class="p">(</span><span class="n">hello</span><span class="p">),</span>
+            <span class="n">Write</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">FadeOut</span><span class="p">(</span><span class="n">hello</span><span class="p">),</span>
+            <span class="n">FadeOut</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
+        <span class="p">)</span>
 </pre></div>
 </pre>
                     <hr>
@@ -139,7 +133,7 @@
                     <div class="field">
                         <div class="control">
                             <a class="button is-primary"
-                               href="/example_src/01_basics/hello_world.py">
+                               href="/example_src/01_basics/latex.py">
                                 <span class="icon"><i class="fas fa-download"></i></span>
                                 <span>Download Code</span>
                             </a>
@@ -148,16 +142,8 @@
                     
                         <div class="field">
                             <label class="label">
-                                HD render HelloOtherWorld
-                                <input class="input" type="text" value="manim hello_world.py HelloOtherWorld"
-                                       readonly>
-                            </label>
-                        </div>
-                    
-                        <div class="field">
-                            <label class="label">
-                                HD render HelloWorld
-                                <input class="input" type="text" value="manim hello_world.py HelloWorld"
+                                HD render LaTeX
+                                <input class="input" type="text" value="manim latex.py LaTeX"
                                        readonly>
                             </label>
                         </div>
@@ -166,17 +152,9 @@
                     
                         <div class="field">
                             <label class="label">
-                                Full HD render HelloOtherWorld
+                                Full HD render LaTeX
                                 <input class="input" type="text"
-                                       value="manim -r 1080,1920 hello_world.py HelloOtherWorld" readonly>
-                            </label>
-                        </div>
-                    
-                        <div class="field">
-                            <label class="label">
-                                Full HD render HelloWorld
-                                <input class="input" type="text"
-                                       value="manim -r 1080,1920 hello_world.py HelloWorld" readonly>
+                                       value="manim -r 1080,1920 latex.py LaTeX" readonly>
                             </label>
                         </div>
                     
