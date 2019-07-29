@@ -105,13 +105,13 @@
 
 
 <span class="k">class</span> <span class="nc">ChangeShape</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-      <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">();</span>
-          <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">();</span>
+    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span>
+        <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span>
 
-          <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">square</span><span class="p">));</span>
-          <span class="n">new_circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">();</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">new_circle</span><span class="p">));</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">square</span><span class="p">))</span>
+        <span class="n">new_circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">new_circle</span><span class="p">))</span>
 </pre></div>
 </pre>
                     <hr>

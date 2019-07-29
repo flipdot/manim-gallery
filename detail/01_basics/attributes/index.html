@@ -111,26 +111,25 @@
 
 
 <span class="k">class</span> <span class="nc">ColoringAndPosition</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-      <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-          <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
-          <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
-          <span class="n">triangle</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">)</span>
-          <span class="n">square</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
-          <span class="n">circle</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
-          <span class="n">triangle</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">UP</span><span class="p">)</span>
-          <span class="n">large_circle</span><span class="o">=</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">WHITE</span><span class="p">)</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">square</span><span class="p">))</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">circle</span><span class="p">))</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">triangle</span><span class="p">))</span>  
-          <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
+        <span class="n">triangle</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">)</span>
+        <span class="n">square</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">circle</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">triangle</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">square</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">circle</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">triangle</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">Size</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span>
-        <span class="n">medium_circle</span><span class="o">=</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
-        <span class="n">large_circle</span><span class="o">=</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">)</span>
-        
+        <span class="n">medium_circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">)</span>
+        <span class="n">large_circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">WHITE</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">ShowCreation</span><span class="p">(</span><span class="n">circle</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">ShowCreation</span><span class="p">(</span><span class="n">medium_circle</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">ShowCreation</span><span class="p">(</span><span class="n">large_circle</span><span class="p">))</span>
