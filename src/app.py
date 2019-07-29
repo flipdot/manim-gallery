@@ -44,7 +44,8 @@ def index():
             'examples': [
                 {
                     'title': module_name,
-                    'image': get_scene_details(category, importlib.import_module(f'examples.{category}.{module_name}'))[0],
+                    'image': get_scene_details(category,
+                                               importlib.import_module(f'examples.{category}.{module_name}'))[0],
                     'module_name': module_name,
                 } for module_name in get_examples(category)
             ]
@@ -122,7 +123,11 @@ def get_scene_details(category, module):
     scene_classes = get_scene_classes(module)
 
     def get_url(scene, size):
-        return url_for('renderings', category=category, module_name=module.__name__.rsplit('.')[-1], scene_name=scene.__name__, size=size)
+        return url_for('renderings',
+                       category=category,
+                       module_name=module.__name__.rsplit('.')[-1],
+                       scene_name=scene.__name__,
+                       size=size)
 
     return [
         {
