@@ -98,7 +98,7 @@ def renderings(size, category, module_name, scene_name):
               'skip_animations': False,
               'start_at_animation_number': None,
               'video_output_dir': None,
-              'video_dir': app.config['RENDERINGS_PATH'],
+              'video_dir': app.config['RENDERINGS_PATH'] / category,
               'tex_dir': 'video_tex',
               'media_dir': 'video_media',
               'module': None,
