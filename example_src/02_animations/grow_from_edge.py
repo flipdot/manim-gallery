@@ -4,9 +4,13 @@ from manimlib.imports import *
 class AnimationGrowFromEdge(Scene):
     def construct(self):
         square = Square()
-        labels = ['LEFT', 'RIGHT', 'UP', 'DOWN']
-        edges = [LEFT, RIGHT, UP, DOWN]
-        for label, edge in zip(labels, edges):
+        edges = {
+            'LEFT': LEFT,
+            'RIGHT': RIGHT,
+            'UP': UP,
+            'DOWN': DOWN
+        }
+        for label, edge in edges.items():
             annotation = TextMobject(f'Grow from {label} edge', height=.8)
             annotation.shift(2 * DOWN)
             self.add(annotation)

@@ -107,9 +107,13 @@
 <span class="k">class</span> <span class="nc">AnimationFadeOutAndShift</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span>
-        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LEFT&#39;</span><span class="p">,</span> <span class="s1">&#39;RIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;UP&#39;</span><span class="p">,</span> <span class="s1">&#39;DOWN&#39;</span><span class="p">]</span>
-        <span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;LEFT&#39;</span><span class="p">:</span> <span class="n">LEFT</span><span class="p">,</span>
+            <span class="s1">&#39;RIGHT&#39;</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span>
+            <span class="s1">&#39;UP&#39;</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span>
+            <span class="s1">&#39;DOWN&#39;</span><span class="p">:</span> <span class="n">DOWN</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">annotation</span> <span class="o">=</span> <span class="n">TextMobject</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Fade Out and shift </span><span class="si">{label}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=.</span><span class="mi">8</span><span class="p">)</span>
             <span class="n">annotation</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
