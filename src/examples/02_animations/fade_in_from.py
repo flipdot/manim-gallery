@@ -7,9 +7,9 @@ class AnimationFadeInFrom(Scene):
         labels = ['LEFT', 'RIGHT', 'UP', 'DOWN']
         edges = [LEFT, RIGHT, UP, DOWN]
         for label, edge in zip(labels, edges):
-            anno = TextMobject(f'Fade In from {label}', height=.8)
-            anno.shift(2 * DOWN)
-            self.add(anno)
+            annotation = TextMobject(f'Fade In from {label}', height=.8)
+            annotation.shift(2 * DOWN)
+            self.add(annotation)
 
             self.play(FadeInFrom(square, edge))
-            self.remove(anno, square)
+            self.remove(annotation, square)

@@ -5,7 +5,7 @@ class AnimationFadeIn(Scene):
     def construct(self):
         square = Square()
 
-        anno = TextMobject('Fade In', height=.8)
-        anno.shift(2 * DOWN)
-        self.add(anno)
+        annotation = TextMobject('Fade In', height=.8)
+        annotation.shift(2 * DOWN)
+        self.add(annotation)
         self.play(FadeIn(square))
