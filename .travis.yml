@@ -12,6 +12,8 @@ install:
   - pip install flake8
 
 script:
+  # fail fast
+  - set -e
   # check style
   - flake8 src
   # build static version of page
