@@ -14,5 +14,5 @@ class Grid(Scene):
                 self.add(annotation)
                 dot = Dot(point=(x, y, 0))
                 self.add(dot)
-                self.wait(.05)
+                self.wait(.1)
                 self.remove(annotation)
