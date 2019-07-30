@@ -90,35 +90,32 @@
 
     <section class="section" id="index">
         <div class="container">
-            <h2 class="title">grid</h2>
+            <h2 class="title">fade_out_and_shift</h2>
             <div class="columns">
                 <div class="column is-half">
                     
-                        <code>class Grid(Scene):</code>
-                        <a href="/renderings/xl/01_basics/grid/Grid.gif"><img src="/renderings/m/01_basics/grid/Grid.gif"/></a>
+                        <code>class AnimationFadeOutAndShift(Scene):</code>
+                        <a href="/renderings/xl/02_animations/fade_out_and_shift/AnimationFadeOutAndShift.gif"><img src="/renderings/m/02_animations/fade_out_and_shift/AnimationFadeOutAndShift.gif"/></a>
                         
                     
                 </div>
                 <div class="column is-half">
-                    <h3 class="title">File <code>grid.py</code></h3>
+                    <h3 class="title">File <code>fade_out_and_shift.py</code></h3>
                     <pre><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">manimlib.imports</span> <span class="k">import</span> <span class="o">*</span>
 
 
-<span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Manim uses a grid to place elements. At the center of the image is the origin, coordinate (0, 0, 0).</span>
-<span class="sd">    This example demonstrates the size of the grid.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
+<span class="k">class</span> <span class="nc">AnimationFadeOutAndShift</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
-                <span class="n">annotation</span> <span class="o">=</span> <span class="n">TexMobject</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;P(</span><span class="si">{x}</span><span class="s1">, </span><span class="si">{y}</span><span class="s1">, 0)&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
-                <span class="n">dot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+        <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LEFT&#39;</span><span class="p">,</span> <span class="s1">&#39;RIGHT&#39;</span><span class="p">,</span> <span class="s1">&#39;UP&#39;</span><span class="p">,</span> <span class="s1">&#39;DOWN&#39;</span><span class="p">]</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+            <span class="n">annotation</span> <span class="o">=</span> <span class="n">TextMobject</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Fade Out and shift </span><span class="si">{label}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=.</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOutAndShift</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">edge</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">square</span><span class="p">)</span>
 </pre></div>
 </pre>
                     <hr>
@@ -134,7 +131,7 @@
                     <div class="field">
                         <div class="control">
                             <a class="button is-primary"
-                               href="/example_src/01_basics/grid.py">
+                               href="/example_src/02_animations/fade_out_and_shift.py">
                                 <span class="icon"><i class="fas fa-download"></i></span>
                                 <span>Download Code</span>
                             </a>
@@ -143,8 +140,8 @@
                     
                         <div class="field">
                             <label class="label">
-                                HD render Grid
-                                <input class="input" type="text" value="manim grid.py Grid"
+                                HD render AnimationFadeOutAndShift
+                                <input class="input" type="text" value="manim fade_out_and_shift.py AnimationFadeOutAndShift"
                                        readonly>
                             </label>
                         </div>
@@ -153,9 +150,9 @@
                     
                         <div class="field">
                             <label class="label">
-                                Full HD render Grid
+                                Full HD render AnimationFadeOutAndShift
                                 <input class="input" type="text"
-                                       value="manim -r 1080,1920 grid.py Grid" readonly>
+                                       value="manim -r 1080,1920 fade_out_and_shift.py AnimationFadeOutAndShift" readonly>
                             </label>
                         </div>
                     
