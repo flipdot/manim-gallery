@@ -94,3 +94,6 @@ class CoordScreen(Scene):
     def construct(self):
         screen_grid = ScreenGrid()
         self.add(screen_grid)
+        dot = Dot([1, 1, 0])
+        self.play(FadeIn(dot))
+        self.wait()
