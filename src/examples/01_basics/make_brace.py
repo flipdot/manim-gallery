@@ -8,6 +8,6 @@ from manimlib.imports import *
         b=Brace(VGroup(dot,dot2),UP)
         eq_text = b.get_tex("x-x_1")
 
-         self.add(dot,dot2)
+        self.add(dot,dot2)
         self.add(line,b, eq_text)
         self.wait(0.1)
