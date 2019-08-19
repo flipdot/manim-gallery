@@ -12,4 +12,4 @@ class ParamFunc(Scene):
         dot = Dot()
         self.add(dot)
         self.add(func)
-        self.wait(3)
+        self.wait(0.1)
