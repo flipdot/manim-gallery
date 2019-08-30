@@ -75,7 +75,7 @@ class ScreenGrid(VGroup):
                 for v_i, directions_buff in zip(vi_c, d_buff):
                     ubication = v_i + orientation * division * i
                     coord_point = round(ubication[coord], self.number_decimals)
-                    label = TextMobject(f"{coord_point}").scale(self.labels_scale)
+                    label = TextMobject(coord_point).scale(self.labels_scale)
                     label.next_to(ubication, directions_buff, buff=self.labels_buff)
                     labels.add(label)
 
