@@ -104,3 +104,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+*.mp4
+partial_movie_file_list.txt
