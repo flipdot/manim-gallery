@@ -1,3 +1,5 @@
+from manimlib.imports import *
+
 class PlotFunctions(GraphScene):
     CONFIG = {
         "x_min" : -10,
