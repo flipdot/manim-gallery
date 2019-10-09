@@ -10,8 +10,8 @@ class ColoringAndPosition(Scene):
         circle.move_to(LEFT)
         triangle.move_to(2 * UP)
         self.play(FadeIn(square))
-        self.play(FadeIn(circle))
-        self.play(FadeIn(triangle))
+        self.play(GrowFromCenter(circle))
+        self.play(ShowCreation(triangle))
         self.wait(1)
 
 
